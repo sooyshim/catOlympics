@@ -1,0 +1,139 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration{-webkit-appearance:none;-moz-appearance:none}input[type=search]{-webkit-appearance:none;-moz-appearance:none;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}textarea{overflow:auto;vertical-align:top;resize:vertical}audio,canvas,video{display:inline-block;max-width:100%}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}a:focus{outline:thin dotted}a:active,a:hover{outline:0}img{border:0;-ms-interpolation-mode:bicubic}figure{margin:0}form{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}button,html,input,select,textarea{color:#222}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}img{vertical-align:middle}fieldset{border:0;margin:0;padding:0}textarea{resize:vertical}.chromeframe{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: ''; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
+
+/* variables */
+:root {
+    --sansSerif: 'Dosis', sans-serif;
+    --monospace: 'Cutive Mono', monospace;
+    --white: #f5ebe6;
+    --black: #333;
+    --lightGreen: #dbdacb;
+    --yellow: #decb5c;
+}
+
+body {
+    margin: 0;
+    font-size: 125%;
+    background-color: var(--white);
+    height: 100vh;
+}
+
+body, 
+a {
+    color: var(--black);
+}
+
+h1,
+.explanation,
+footer {
+    text-align: center;
+}
+
+p, 
+button,
+div,
+footer {
+    font-family: var(--monospace);
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-family: var(--sansSerif);
+    text-transform: uppercase;
+    letter-spacing: 1.0px;
+    font-size: 2.8rem;
+}
+
+.catRing {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(./assets/background.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.cat {
+    background-color: var(--white);
+    height: 550px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+img {
+    width: 100%;
+    min-height: 350px;
+    max-height: 350px;
+}
+
+.catName {
+    font-weight: bold;
+}
+
+.catName, 
+.origin,
+.energyLevel,
+.sheddingLevel {
+    padding-left: 10px;
+}
+
+button,
+.loading,
+.winner {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    background-color: var(--yellow);
+    color: var(--black);
+    border: 1px solid var(--black);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+button {
+    width: 150px;
+    height: 70px;
+}
+
+.loading,
+.winner {
+    padding: 20px 0;
+}
+
+.disabled {
+    background-color: darkgray;
+}
+
+.replayButton {
+    margin: 0;
+    padding: 20px 30px;
+}
+
+.nextRoundButton,
+.loading,
+.winner {
+    width: 300px;
+    height: 70px;
+}
+
+footer {
+    font-size: 0.9rem;
+}
