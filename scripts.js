@@ -18,12 +18,6 @@ tournament.APIHeaders = new Headers ({
     'method': 'GET'
 })
 
-// Call images of each cat
-//creating instance of a class
-//this is like a mold and you're creating instances from the mold
-//this changes the way code works
-tournament.catAPIImagesURL = new URL('https://api.thecatapi.com/v1/images/search');
-
 
 tournament.callAllCats = async () => {
     try {
@@ -32,10 +26,17 @@ tournament.callAllCats = async () => {
             });
         const result = await response.json();
         tournament.cats.push(...result);
+        console.log(result);
     } catch (err) {
         console.log(err.message);
     }
 }
+
+// Call images of each cat
+//creating instance of a class
+//this is like a mold and you're creating instances from the mold
+//this changes the way code works
+tournament.catAPIImagesURL = new URL('https://api.thecatapi.com/v1/images/search');
 
 tournament.getImages = async (sixteenCats) => {
    const catIds = sixteenCats.map(cat => cat.id);
@@ -45,6 +46,7 @@ tournament.getImages = async (sixteenCats) => {
            breed_id: catIds[i],
            size: "thumb"
        };
+
        tournament.catAPIImagesURL.search = new URLSearchParams(params);
 
         try {
