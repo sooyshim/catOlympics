@@ -1,11 +1,11 @@
 //name spacing for the app
 const tournament = {};
 
-//an array that contains all cats returned from the api call
+//variables + arrays
 tournament.cats = [];
 tournament.catImages = [];
-const startButton = document.querySelector('.startButton');
-const catRing = document.querySelector('.catRing');
+tournament.startButton = document.querySelector('.startButton');
+tournament.catRing = document.querySelector('.catRing');
 tournament.quarterFinalists = [];
 tournament.semiFinalists = [];
 tournament.finalists = [];
@@ -13,12 +13,13 @@ tournament.finalists = [];
 //call cats from the cat API
 tournament.catApiUrlToAllBreeds = 'https://api.thecatapi.com/v1/breeds';
 
+//api header
 tournament.APIHeaders = new Headers ({
     'x-api-key': 'c717fd08-fa53-43c6-b81d-d04bbf27cb86',
     'method': 'GET'
 })
 
-
+//api call for cat data
 tournament.callAllCats = async () => {
     try {
         const response = await fetch(tournament.catApiUrlToAllBreeds, {
@@ -62,6 +63,7 @@ tournament.getImages = async (sixteenCats) => {
     }
 }
 
+//fetch with promises (notes to myself)
 // fetch(tournament.catApiUrlToAllBreeds, {
 //     headers : tournament.APIHeaders
 // }).then(function(response) {
@@ -152,7 +154,7 @@ tournament.generateGame = (pairedCats, i) => {
                     tournament.finalists.push(catDiv.innerHTML);
                     break;
                 case 1: 
-                    catRing.innerHTML = '<div class="winner">The winner is...</div>'
+                    tournament.catRing.innerHTML = '<div class="winner">The winner is...</div>'
                     setTimeout(() => {
                         tournament.endGame(catDiv)
                     }, 1000)
@@ -165,23 +167,26 @@ tournament.generateGame = (pairedCats, i) => {
 
 }
 
+//end game
 tournament.endGame = (catDiv) => {
-    catRing.innerHTML = catDiv.innerHTML
+    tournament.catRing.innerHTML = catDiv.innerHTML
     const button = document.createElement("button");
     button.innerHTML = 'replay';
     button.className = 'replayButton'
-    catRing.appendChild(button);
+    tournament.catRing.appendChild(button);
     button.addEventListener('click', () => {
         location.reload();
     })
 }
+
+//update cats in the cat ring
 tournament.updateCats = (pairedCats, i) => {
     const nextRoundButton = '<button class="nextRoundButton">Go to Next Round</button>'
-        catRing.innerHTML = pairedCats[i];
+        tournament.catRing.innerHTML = pairedCats[i];
         tournament.generateGame(pairedCats, i);
         
         if (i === pairedCats.length) {
-            catRing.innerHTML = nextRoundButton;
+            tournament.catRing.innerHTML = nextRoundButton;
             const nextRoundButtonInDom = document.querySelector('.nextRoundButton');
             nextRoundButtonInDom.addEventListener('click', () => {
                 switch (pairedCats.length) {
@@ -205,13 +210,14 @@ tournament.updateCats = (pairedCats, i) => {
 // function that calls other functions to start the game
 tournament.startGame = async (catData) => {
     const sixteenCats = tournament.getSixteenCats(catData);
-    catRing.innerHTML = '<div class="loading">LOADING...</div>'
+    tournament.catRing.innerHTML = '<div class="loading">LOADING...</div>'
     await tournament.getImages(sixteenCats);
     const catsInHTML = tournament.loadDataToHTMLElements(sixteenCats);
     const pairedCats = tournament.makePairs(catsInHTML);
     tournament.updateCats(pairedCats, 0);
 }
 
+//update the round
 tournament.updateRound = (cats) => {
     const playingCats = tournament.makePairs(cats);
     tournament.updateCats(playingCats, 0);
@@ -220,7 +226,7 @@ tournament.updateRound = (cats) => {
 // document ready
 document.addEventListener("DOMContentLoaded", function () {
     tournament.callAllCats();
-    startButton.addEventListener('click', () => {
+    tournament.startButton.addEventListener('click', () => {
         tournament.startGame(tournament.cats);
         startButton.setAttribute("disabled", "");
         startButton.className = "disabled";
